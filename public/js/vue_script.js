@@ -51,7 +51,8 @@ var vm = new Vue({
       this.index = document.getElementById("payment");
       this.payment= index.options[index.selectedIndex].value;
       this.gender = "test"
-      console.log(gender_check());
+      //this.gender = gender_check();
+      //this.gender = checkGender();
 
 
     },
@@ -59,7 +60,7 @@ var vm = new Vue({
     //   this.gender_radios = document.getElementByName("gender");
     //   for (var i = 0 , length = gender_radios.length; i < length; i++){
     //     if(gender_radios[i].checked){
-    //       return "test"
+    //       return gender_radios[i].value;
     //       break;
     //     }
     //
