@@ -1,0 +1,136 @@
+
+body {
+    font-family: arial;
+    font-size: 1.3em;
+}
+
+#min{
+  font-family: sans-serif;
+  color: green;
+}
+.allergies{
+  color: yellow;
+  font-weight: bold;
+}
+#cinfo1{
+  margin: 0px 0px 0px 10px
+}
+#payment_information{
+  border: 5px dashed #000000;
+}
+#gender{
+  margin: 5px 0px 5px 0px;
+  border: 5px dashed #000000;
+}
+
+
+
+#costumer{
+  margin: 5px 0px 5px 0px;
+  background-color: black;
+  color: white;
+  border: 5px dashed #FFFFFF;
+
+}
+#burgers{
+  border: 5px dashed #000000;
+}
+#costumer_info{
+  margin: 0px 0px 0px 10px;
+}
+
+button:hover {
+  background-color: yellow ;
+  cursor: pointer;
+}
+table {
+  width: 102% ;
+  }
+  h1 {
+    position: relative;
+    top: 100px;
+    margin: 50px 2px 50px 0px;
+  }
+
+  h2 {
+    font-weight: lighter;
+    margin: 0px 0px 30px 10px;
+  }
+  h3,h4,h5 {
+    margin: 5px;
+  }
+  #button1 {
+    margin: 25px 2px 25px 0px;
+  }
+#payment_1,#payment_2 {
+  margin: 0px 0px 25px 5px;
+}
+#header_pic{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  opacity: 0.76;
+}
+#header1{
+  position: relative;
+  height: 350px;
+  margin: 5px 0px -4px 0px;
+}
+.wrapper {
+     display: grid;
+     grid-gap: 10px;
+}
+.burger1{
+  grid-column: 1;
+  grid-row: 1;
+}
+.burger2{
+  grid-column: 2;
+  grid-row: 1;
+}
+.burger3{
+  grid-column: 3;
+  grid-row: 1;
+}
+.burgerimage1{
+  grid-column: 1;
+  grid-row: 2;
+}
+.burgerimage2{
+  grid-column: 2;
+  grid-row: 2;
+}
+.burgerimage3{
+  grid-column: 3;
+  grid-row: 2;
+}
+.allergies1{
+  align: "center";
+  grid-column: 1;
+  grid-row: 3;
+}
+.allergies2{
+  align: "center";
+  grid-column: 2;
+  grid-row: 3;
+}
+.allergies3{
+  align: "center";
+  grid-column: 3;
+  grid-row: 3;
+}
+#snygg{
+  padding-left: 50px;
+}
+#checkbox_order {
+  margin: 50px 0px 0px 0px;
+}
+#costumer_text {
+  margin: 0px 0px 0px 10px;
+  font-size: 14px;
+}
+#order_summary{
+  margin: 0px 0px 0px 25px;
+  font-size: 14px;
+
+}

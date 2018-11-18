@@ -1,0 +1,11 @@
+<div class="wrapper">
+   <div class="box burger1" align = "center">Jonas Burger</div>
+   <div class="box burger2" align = "center">Jonas Burger2</div>
+   <div class="box burger3" align = "center">Jonas Burger3</div>
+   <div class="box burgerimage1"><img src="https://i.pinimg.com/originals/ef/08/65/ef0865a83a47e946e086a9e97ead23df.jpg" alt="Span" title="Jonas 1 Burger" width="300" height="280"></div>
+   <div class="box burgerimage2"><img src="https://res.cloudinary.com/teepublic/image/private/s--QGmjn0Qd--/t_Preview/b_rgb:fefeff,c_limit,f_jpg,h_630,q_90,w_630/v1501533190/production/designs/1779865_1.jpg" alt="Span" title="Jonas Burger 2" width="300" height="280"></div>
+   <div class="box burgerimage3"><img src="https://i.pinimg.com/originals/ef/08/65/ef0865a83a47e946e086a9e97ead23df.jpg" alt="Span" title="Jonas 3 Burger" width="300" height="280"></div>
+   <div class="box allergies1" ><ul><li> gluten-free</li><li> lactose-free</li></ul></div>
+   <div class="box allergies2" id ="snygg"><li> Lactose-free</li></div>
+   <div class="box allergies3" ><li> Extra gluten</li></div>
+ </div>
