@@ -1,12 +1,122 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>DELI-VERY</title>
+  <script src="https://vuejs.org/js/vue.js" defer></script>
+  <script src="js/js_script.js" defer></script>
+  <script src="js/vue_script.js" defer></script>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <title>Big Burgers</title>
+  <meta charset="utf-8"/>
 </head>
 <body>
-	<h1>
-		Hello world!
-	</h1>
-	<a href="/map">View map</a>
+  <div id ="vue_container">
+    <div id="header1">
+      <img id ="header_pic"src="https://www.intofilm.org/intofilm-production/331/scaledcropped/1170x548/resources/331/cloudy-with-a-chance-of-meatballs-header.jpg"height = "350" width= "1264">
+      <h1 align = "center">Välkommen till Big Burger</h1>
+    </div>
+
+    <section id ="burgers">
+      <h2 align = "center" > Select burger </h2>
+      <p align = "center">This is where you excecute the burger selection</p>
+      <div id= "myID">
+        <div style="display: flex; justify-content:space-evenly; flex-wrap: wrap;">
+          <div v-for="burger in burgers" v-if="burger.lactose || burger.gluten && burger.stock > 0" >
+            <div style="display: flex ; flex-direction: column">
+              <h3 align ="center">
+                {{ burger.name }}
+              </h3>
+              <img :src="burger.img" width="300" height="280"/>
+              <div style="height: 50px;">
+                <li v-if="burger.gluten">Contains Gluten
+                </li>
+                <li v-if="burger.lactose">Contains Lactose
+                </li>
+              </div>
+              <div id="checkbox_order">
+                <input type="checkbox" id="namn" :value="burger.name" v-model="order_list">
+                <label>Add to order</label>
+                {{order_list}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="costumer">
+      <br />
+      <h2> Customer information</h2>
+      <p id = "cinfo1">This is where you enter costumer information</p>
+      <main>
+        <form id ="costumer_info">
+          <p>
+            <label for="Full name">First and Last name</label><br>
+            <input type="text" id="Full_name" name="fn" required="required" placeholder="Full name">
+          </p>
+          <p>
+            <label for="E-mail">E-mail adress</label><br>
+            <input type="email" id="Email" name="em" required="required" placeholder="Email address">
+          </p>
+          <p>
+            <label for="Street">Street name</label><br>
+            <input type="text" id="Street_name" name="sn" required="required"placeholder="Street name">
+          </p>
+          <p id ="house_number">
+            <label for="House">House number</label><br>
+            <input type="integer" id="House_number" name="hn" required="required"placeholder="House number">
+          </p>
+          <br/>
+
+        </form>
+
+      </main>
+    </section>
+    <section id= "payment_information" >
+      <h3> Payment options </h3>
+      <p>
+        <label id ="payment_1" for="Payment">Payment</label><br>
+        <select id="payment" name="pmnt" v-model="payment">
+          <option>Visa card</option>
+          <option>Master card</option>
+          <option>Swish</option>
+          <option>avbetalning</option>
+        </select>
+      </p>
+    </section>
+    <h3>Gender</h3>
+    <label for = "kön">kön</label><br>
+    <input type="radio" name="gender" value="male"> Male {{gender}}<br>
+    <input type="radio" name="gender" value="female"> Female<br>
+    <input type="radio" name="gender" value="Other"> Non-binary<br>
+    <input type="radio" name="gender" value="Undisclosed" checked="checked"> Undisclosed
+
+    <section id = "ShowingOrderInfo" >
+      <h5> Send information </h5>
+
+      <div id ="button1">
+        <button type="button" v-on:click="orderDone()"><img src="https://naturalsolar.com.au/wp-content/uploads/2016/05/Place-Order-Button-1.png"width="200"></button>
+      </div>
+      <div id ="order_info1" v-if = "order_info">
+        <h3 >Order confirmation</h3>
+        <h4>Costumer details</h4>
+        <div id="costumer_text" >
+          <p>Name: {{personal_info_array[0]}}</p>
+          <p>Email: {{personal_info_array[1]}}</p>
+          <p>Deliver to:</p>
+          <p>Payment method: {{payment}}</p>
+          <p>Gender: {{gender}} </p>
+          {{selected_burger_list}}
+        </div>
+        <h4>Order summary</h4>
+        <div id ="order_summary" v-for= "burger in order_list" >
+          <li>{{burger}}</li> <br/>
+        </div>
+      </section>
+    </div>
+
+  </div>
+  <footer>
+    &copy;Big Burger inc.
+  </footer>
+
 </body>
 </html>
