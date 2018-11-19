@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DELI-VERY MAP</title>
+  <link rel="stylesheet" href="css/deli-very.css">
+  <script src="/vue/vue.js" defer></script>
+  <script src="/socket.io/socket.io.js" defer></script>
+  <script src="js/deli-very.js" defer></script>
   <script src="https://vuejs.org/js/vue.js" defer></script>
   <script src="js/js_script.js" defer></script>
   <script src="js/vue_script.js" defer></script>
@@ -20,6 +26,8 @@
       <p align = "center">This is where you excecute the burger selection</p>
       <div id= "myID">
         <div style="display: flex; justify-content:space-evenly; flex-wrap: wrap;">
+
+
           <div v-for="burger in burgers" v-if="burger.lactose || burger.gluten && burger.stock > 0" >
             <div style="display: flex ; flex-direction: column">
               <h3 align ="center">
@@ -33,9 +41,10 @@
                 </li>
               </div>
               <div id="checkbox_order">
+
+
                 <input type="checkbox" id="namn" :value="burger.name" v-model="order_list">
                 <label>Add to order</label>
-                {{order_list}}
               </div>
             </div>
           </div>
@@ -43,7 +52,7 @@
       </div>
     </section>
     <section id="costumer">
-      <br />
+      <br/>
       <h2> Customer information</h2>
       <p id = "cinfo1">This is where you enter costumer information</p>
       <main>
@@ -56,20 +65,28 @@
             <label for="E-mail">E-mail adress</label><br>
             <input type="email" id="Email" name="em" required="required" placeholder="Email address">
           </p>
-          <p>
-            <label for="Street">Street name</label><br>
-            <input type="text" id="Street_name" name="sn" required="required"placeholder="Street name">
-          </p>
-          <p id ="house_number">
-            <label for="House">House number</label><br>
-            <input type="integer" id="House_number" name="hn" required="required"placeholder="House number">
-          </p>
-          <br/>
-
         </form>
+        <html>
+        </section>
+        <section id="delivery_map">
+          <h1> Click in the map! </h1>
+          {{message}}
+          <a href="/dispatcher" target="_blank">Open dispatcher in new window</a>.
+          <div class="view-box">
+            <div id="dots" v-on:click="addOrder">
+              {{message}}
+                <div
+                  v-for="(order, key) in orders"
+                  v-bind:style="{ left: order.details.x + 'px', top: order.details.y + 'px'}">
+                  {{key}}
+                </div>
+            </div>
+          </div>
+        </section>
+        </html>
 
       </main>
-    </section>
+
     <section id= "payment_information" >
       <h3> Payment options </h3>
       <p>
@@ -84,7 +101,7 @@
     </section>
     <h3>Gender</h3>
     <label for = "kön">kön</label><br>
-    <input type="radio" name="gender" value="male"> Male {{gender}}<br>
+    <input type="radio" name="gender" value="male"> Male<br>
     <input type="radio" name="gender" value="female"> Female<br>
     <input type="radio" name="gender" value="Other"> Non-binary<br>
     <input type="radio" name="gender" value="Undisclosed" checked="checked"> Undisclosed
@@ -104,7 +121,7 @@
           <p>Deliver to:</p>
           <p>Payment method: {{payment}}</p>
           <p>Gender: {{gender}} </p>
-          {{selected_burger_list}}
+
         </div>
         <h4>Order summary</h4>
         <div id ="order_summary" v-for= "burger in order_list" >

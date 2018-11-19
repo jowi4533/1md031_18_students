@@ -4,7 +4,7 @@ var personal_info_array = [];
 var selected_burger_list = [];
 var order_info= false;
 var burger_select= false;
-var gender = "tja";
+var gender = ""; //denna rad
 var meny = function(nm,st,kc,la,gl){
   this.name = nm;
   this.stock = st;
@@ -12,6 +12,17 @@ var meny = function(nm,st,kc,la,gl){
   this.lactose = la;
   this.gluten =gl
 
+
+}
+var checkGender = function(){
+ var gender_radios = document.getElementsByName("gender");
+  for (var i = 0 , length = gender_radios.length; i < length; i++){
+    if(gender_radios[i].checked){
+      return gender_radios[i].value;
+      break;
+    }
+
+}
 }
 
 var vm = new Vue({
@@ -34,38 +45,32 @@ var vm = new Vue({
     order_list: [],
     payment: [],
     g_ender: [],
-    gender: gender
+    gender: gender  //denna rad
 
 
   },
   methods: {
+
     orderDone: function() {
       var Name = document.getElementById("Full_name").value;
       var Email = document.getElementById("Email").value;
-      var Street= document.getElementById("Street_name").value;
-      var Housenumber = document.getElementById("House_number").value;
+      //var Street= document.getElementById("Street_name").value;
+      //var Housenumber = document.getElementById("House_number").value;
       var Radios = document.getElementsByName("gender");
-      this.personal_info_array = [Name,Email,Street,Housenumber];
+      this.personal_info_array = [Name,Email];
       this.message= selected_burger_list
       this.order_info = true
-      this.index = document.getElementById("payment");
-      this.payment= index.options[index.selectedIndex].value;
-      this.gender = "test"
+      var index = document.getElementById("payment").selectedIndex;
+      var payment_list = document.getElementById("payment").options;
+      this.payment= payment_list[index].value;
+      //this.gender = "test" ;  //denna rad
       //this.gender = gender_check();
-      //this.gender = checkGender();
+      this.gender = checkGender();
 
 
     },
-    // checkGender: function(){
-    //   this.gender_radios = document.getElementByName("gender");
-    //   for (var i = 0 , length = gender_radios.length; i < length; i++){
-    //     if(gender_radios[i].checked){
-    //       return gender_radios[i].value;
-    //       break;
-    //     }
-    //
-    //   }
-    // },
+    
+
     // gender_check: function(){
     //   for (var i = 0, length = radios.length; i < length; i++)
     //   {

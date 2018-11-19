@@ -9,3 +9,11 @@
    <div class="box allergies2" id ="snygg"><li> Lactose-free</li></div>
    <div class="box allergies3" ><li> Extra gluten</li></div>
  </div>
+ <p>
+   <label for="Street">Street name</label><br>
+   <input type="text" id="Street_name" name="sn" required="required"placeholder="Street name">
+ </p>
+ <p id ="house_number">
+   <label for="House">House number</label><br>
+   <input type="integer" id="House_number" name="hn" required="required"placeholder="House number">
+ </p>
