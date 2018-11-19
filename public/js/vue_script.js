@@ -1,4 +1,5 @@
-
+'use strict';
+var socket = io();
 var message = "hej";
 var personal_info_array = [];
 var selected_burger_list = [];
@@ -24,6 +25,13 @@ var checkGender = function(){
 
 }
 }
+var checkPayment = function(){
+  let index = document.getElementById("payment").selectedIndex;
+  var payment_list = document.getElementById("payment").options;
+  return (payment_list[index])
+
+}
+
 
 var vm = new Vue({
   el: '#vue_container',
@@ -44,14 +52,24 @@ var vm = new Vue({
     burger_select: burger_select,
     order_list: [],
     payment: [],
-    g_ender: [],
-    gender: gender  //denna rad
+    gender: gender,  //denna rad
+    orders: {}
 
 
+  },
+  created: function () {
+    socket.on('initialize', function (data) {
+      this.orders = data.orders;
+    }.bind(this));
+
+    socket.on('currentQueue', function (data) {
+      this.orders = data.orders;
+    }.bind(this));
   },
   methods: {
 
     orderDone: function() {
+      console.log("button clicked");
       var Name = document.getElementById("Full_name").value;
       var Email = document.getElementById("Email").value;
       //var Street= document.getElementById("Street_name").value;
@@ -60,31 +78,46 @@ var vm = new Vue({
       this.personal_info_array = [Name,Email];
       this.message= selected_burger_list
       this.order_info = true
-      var index = document.getElementById("payment").selectedIndex;
-      var payment_list = document.getElementById("payment").options;
-      this.payment= payment_list[index].value;
+      this.payment = checkPayment();
       //this.gender = "test" ;  //denna rad
       //this.gender = gender_check();
       this.gender = checkGender();
+      console.log(document.getElementById("payment").selectedIndex);
 
 
     },
-    
+    test: function(){
+      console.log("test");
+    },
+    getNext: function () {
+      var lastOrder = Object.keys(this.orders).reduce(function (last, next) {
+        return Math.max(last, next);
+      }, 0);
+      return lastOrder + 1;
+    },
+    addOrder: function (event) {
+      console.log("tja");
+      var offset = {x: event.currentTarget.getBoundingClientRect().left,
+                    y: event.currentTarget.getBoundingClientRect().top};
+      socket.emit("addOrder", { orderId: this.getNext(),
+                                details: { x: event.clientX - 10 - offset.x,
+                                           y: event.clientY - 10 - offset.y },
+                                orderItems: ["Beans", "Curry"]
+                              });
+    },
+      displayOrder: function (event) {
+      console.log("tja");
+      var offset = {x: event.currentTarget.getBoundingClientRect().left,
+                    y: event.currentTarget.getBoundingClientRect().top};
+                    //this.orders.details = { x: event.clientX - 10 - offset.x,
+                      //         y: event.clientY - 10 - offset.y };
+                    //this.orders.orderId = "T" ;
+                    //this.orders.orderItems = [];
+                    //this.orders.key = "T";
+                    //this.orders.order = [];
+                    this.orders = {orderId: "T",details: { x: event.clientX - 10 - offset.x,
+                               y: event.clientY - 10 - offset.y },orderItems:[]};
 
-    // gender_check: function(){
-    //   for (var i = 0, length = radios.length; i < length; i++)
-    //   {
-    //     if (Radios[i].checked)
-    //     {
-    //
-    //       return Radios[i].value;
-    //       break;
-    //     }
-    //   }
-    //
-    // }
-
-
-
+    }
   }
 })
