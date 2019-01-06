@@ -24,7 +24,6 @@
       <p align = "center">This is where you excecute the burger selection</p>
       <div id= "myID">
         <div style="display: flex; justify-content:space-evenly; flex-wrap: wrap;">
-
           <div v-for="burger in burgers" v-if="burger.lactose || burger.gluten && burger.stock > 0" >
             <div style="display: flex ; flex-direction: column">
               <h3 align ="center">
@@ -68,13 +67,12 @@
         <a href="/dispatcher" target="_blank">Open dispatcher in new window</a>.
         <div class="view-box">
           <div id="dots" v-on:click="displayOrder">
-              <div v-for="(order, key) in orders" v-bind:style="{ left: order.details.x + 'px', top: order.details.y + 'px'}">
-                {{key}}
+              <div v-for="(Tdisplay,position) in newOrder" v-bind:style="{ left: newOrder.position.x + 'px', top: newOrder.position.y + 'px'}">
+                {{newOrder.Tdisplay}}
               </div>
           </div>
         </div>
     </div>
-
   </main>
 
   <section id= "payment_information" >
@@ -108,7 +106,6 @@
       <div id="costumer_text" >
         <p>Name: {{personal_info_array[0]}}</p>
         <p>Email: {{personal_info_array[1]}}</p>
-        <p>Deliver to:</p>
         <p>Payment method: {{payment}}</p>
         <p>Gender: {{gender}} </p>
 

@@ -16,4 +16,11 @@
  <p id ="house_number">
    <label for="House">House number</label><br>
    <input type="integer" id="House_number" name="hn" required="required"placeholder="House number">
+
  </p>
+
+
+.grid-wrapper{
+display: grid;
+grid-template-columns:
+}
