@@ -69,20 +69,18 @@ var vm = new Vue({
       console.log("button clicked");
       this.name = document.getElementById("Full_name").value;
       this.email = document.getElementById("Email").value;
-      this.personal_info_array = [this.name,this.email];
-      this.message= selected_burger_list;
+      //this.message= selected_burger_list;
       this.order_info = true;
       //this.payment = checkPayment();
       this.gender = checkGender();
-      console.log(document.getElementById("payment").selectedIndex);
+      this.personal_info_array = [this.name,this.email,this.payment,this.gender];
       this.addOrder();
       //this.sendCostumerInfo();
       //var Street= document.getElementById("Street_name").value;
       //var Housenumber = document.getElementById("House_number").value;
       //this.gender = "test" ;  //denna rad
       //this.gender = gender_check();
-      this.personal_info_array = [this.name,this.email,this.payment,this.gender];
-      this.sendCostumerInfo();
+
 
     },
     test: function(){
@@ -104,10 +102,5 @@ var vm = new Vue({
             infoList: this.personal_info_array}
           )
         },
-
-        sendCostumerInfo : function () {
-          socket.emit("addOrder",this.personal_info_array)
-
-        }
       }
     })
